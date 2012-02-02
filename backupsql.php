@@ -28,7 +28,7 @@
 //this is a array of the result emails that will be send out when the job is run
 //$email = array('mysqldump');
 $email = array();
-$email[]="kory_calmes@byu.edu";
+$email[]="email@domain";
 
 //Defines for args
 define("PATH_ARG", 1);
@@ -47,7 +47,7 @@ if(!isset($argv[0])){
 //define("PATH", "/var/www/utilities/mysqlbackup/backups");
 define("PATH", $argv[PATH_ARG]);
 define("MYSQL_USER", "ccc");
-define("MYSQL_PASSWORD", "F10w3rP0w3rC3nt3r");
+define("MYSQL_PASSWORD", "*******");
 define("MYSQL_HOST", "localhost");
 define("DRUPAL_DB", "drupal");
 define("BACKUP_LIFESPAN","604800");//In seconds
