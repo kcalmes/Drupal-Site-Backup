@@ -25,31 +25,29 @@
 * 	db password isn't hard-coded into this script but rather place in another php file which is then 'included'
 * 	
 ****************************/
-//this is a array of the result emails that will be send out when the job is run
-//$email = array('mysqldump');
-$email = array();
-$email[]="email@domain";
-
-//Defines for args
-define("PATH_ARG", 1);
-define("MYSQL_USER_ARG", 2);
-define("MYSQL_PASSWORD_ARG", 3);
-define("MYSQL_HOST_ARG", 4);
-define("DRUPAL_DB_ARG", 5);
-define("BACKUP_LIFESPAN_ARG",6);//In seconds
-
 if(!isset($argv[0])){
-	print "Error - Incorrect arguments, usage example: \nphp backupsql.php full/path/for/backups/storage\n";
+	print "Error - Incorrect arguments, usage example: \nphp backupsql.php /full/path/for/backups/storage email@domain.com [ [another@email.com [...]]]\n";
 	exit(0);
 }
 
-//define
-//define("PATH", "/var/www/utilities/mysqlbackup/backups");
-define("PATH", $argv[PATH_ARG]);
+//this is a array of the result emails that will be send out when the job is run
+//$email = array('mysqldump');
+$email = array();
+for($i=2; $i < count($argv); $i++){
+	$email[] = $argv[$i];
+}
+
+//PATH is the directory where the backups will be stored.
+define("PATH", $argv[1]);
+//MYSQL_USER is of course the mysql username that will be used for backups.  Should be read only for security.
 define("MYSQL_USER", "ccc");
+//MYSQL_PASSWORD is the password that goes with the username from above.
 define("MYSQL_PASSWORD", "*******");
+//MYSQL_HOST is the host of the database.  For the most part this will be localhost.
 define("MYSQL_HOST", "localhost");
+//DRUPAL_DB is the database where the drupal tables are located.
 define("DRUPAL_DB", "drupal");
+//BACKUP_LIFESPAN is the time length in seconds to keep each backup file
 define("BACKUP_LIFESPAN","604800");//In seconds
 
 //log into mysql and get the list of databases
@@ -78,7 +76,7 @@ while ($row = mysql_fetch_array($databases_result)) {
 $message_errors = false;
 foreach ($dbs as $database => $prefixs) { //main foreach loop that keeps track of the files
 	$tables = ' ';
-	if($database == "drupal"){
+	if($database == DRUPAL_DB){
 		foreach($prefixs as $prefix => $values){
 			foreach($values as $table){
 				$tables .= ' '.$table;
