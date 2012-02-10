@@ -40,7 +40,7 @@ for($i=2; $i < count($argv); $i++){
 //PATH is the directory where the backups will be stored.
 define("PATH", $argv[1]);
 //MYSQL_USER is of course the mysql username that will be used for backups.  Should be read only for security.
-define("MYSQL_USER", "ccc");
+define("MYSQL_USER", "user");
 //MYSQL_PASSWORD is the password that goes with the username from above.
 define("MYSQL_PASSWORD", "*******");
 //MYSQL_HOST is the host of the database.  For the most part this will be localhost.

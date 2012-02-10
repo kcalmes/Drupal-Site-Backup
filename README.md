@@ -68,7 +68,7 @@ Windows Based
 	
 	These instructions can be found in the script file itself too      
 	//MYSQL_USER is of course the mysql username that will be used for backups.  Should be read only for security.       
-	define("MYSQL_USER", "ccc");      
+	define("MYSQL_USER", "user");      
 	
 	//MYSQL_PASSWORD is the password that goes with the username from above.      
 	define("MYSQL_PASSWORD", "*******");       
