@@ -75,9 +75,9 @@ while ($row = mysql_fetch_array($databases_result)) {
 
 $message_errors = false;
 foreach ($dbs as $database => $prefixs) { //main foreach loop that keeps track of the files
-	$tables = ' ';
 	if($database == DRUPAL_DB){
 		foreach($prefixs as $prefix => $values){
+		  $tables = ' ';
 			foreach($values as $table){
 				$tables .= ' '.$table;
 			}
